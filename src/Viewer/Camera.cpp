@@ -83,77 +83,78 @@ glm::vec3 Camera::getWorldPositionFromView(glm::vec3 pos) const {
 }
 
 void Camera::update() {
-  glm::vec3 forward(glm::normalize(center_ - eye_));
-  glm::vec3 side(glm::normalize(cross(forward, up_)));
-  glm::vec3 up(glm::cross(side, forward));
+    glm::vec3 forward(glm::normalize(center_ - eye_));
+    glm::vec3 side(glm::normalize(cross(forward, up_)));
+    glm::vec3 up(glm::cross(side, forward));
 
-  float nearHeightHalf = near_ * std::tan(fov_ / 2.f);
-  float farHeightHalf = far_ * std::tan(fov_ / 2.f);
-  float nearWidthHalf = nearHeightHalf * aspect_;
-  float farWidthHalf = farHeightHalf * aspect_;
+    float nearHeightHalf = near_ * std::tan(fov_ / 2.f);
+    float farHeightHalf = far_ * std::tan(fov_ / 2.f);
+    float nearWidthHalf = nearHeightHalf * aspect_;
+    float farWidthHalf = farHeightHalf * aspect_;
 
-  // near plane
-  glm::vec3 nearCenter = eye_ + forward * near_;
-  glm::vec3 nearNormal = forward;
-  frustum_.planes[0].set(nearNormal, nearCenter);
+    // near plane
+    glm::vec3 nearCenter = eye_ + forward * near_;
+    glm::vec3 nearNormal = forward;
+    frustum_.planes[0].set(nearNormal, nearCenter);
 
-  // far plane
-  glm::vec3 farCenter = eye_ + forward * far_;
-  glm::vec3 farNormal = -forward;
-  frustum_.planes[1].set(farNormal, farCenter);
+    // far plane
+    glm::vec3 farCenter = eye_ + forward * far_;
+    glm::vec3 farNormal = -forward;
+    frustum_.planes[1].set(farNormal, farCenter);
 
-  // top plane
-  glm::vec3 topCenter = nearCenter + up * nearHeightHalf;
-  glm::vec3 topNormal = glm::cross(glm::normalize(topCenter - eye_), side);
-  frustum_.planes[2].set(topNormal, topCenter);
+    // top plane
+    glm::vec3 topCenter = nearCenter + up * nearHeightHalf;
+    glm::vec3 topNormal = glm::cross(glm::normalize(topCenter - eye_), side);
+    frustum_.planes[2].set(topNormal, topCenter);
 
-  // bottom plane
-  glm::vec3 bottomCenter = nearCenter - up * nearHeightHalf;
-  glm::vec3 bottomNormal = glm::cross(side, glm::normalize(bottomCenter - eye_));
-  frustum_.planes[3].set(bottomNormal, bottomCenter);
+    // bottom plane
+    glm::vec3 bottomCenter = nearCenter - up * nearHeightHalf;
+    glm::vec3 bottomNormal = glm::cross(side, glm::normalize(bottomCenter - eye_));
+    frustum_.planes[3].set(bottomNormal, bottomCenter);
 
-  // left plane
-  glm::vec3 leftCenter = nearCenter - side * nearWidthHalf;
-  glm::vec3 leftNormal = glm::cross(glm::normalize(leftCenter - eye_), up);
-  frustum_.planes[4].set(leftNormal, leftCenter);
+    // left plane
+    glm::vec3 leftCenter = nearCenter - side * nearWidthHalf;
+    glm::vec3 leftNormal = glm::cross(glm::normalize(leftCenter - eye_), up);
+    frustum_.planes[4].set(leftNormal, leftCenter);
 
-  // right plane
-  glm::vec3 rightCenter = nearCenter + side * nearWidthHalf;
-  glm::vec3 rightNormal = glm::cross(up, glm::normalize(rightCenter - eye_));
-  frustum_.planes[5].set(rightNormal, rightCenter);
+    // right plane
+    glm::vec3 rightCenter = nearCenter + side * nearWidthHalf;
+    glm::vec3 rightNormal = glm::cross(up, glm::normalize(rightCenter - eye_));
+    frustum_.planes[5].set(rightNormal, rightCenter);
 
-  // 8 corners
-  glm::vec3 nearTopLeft = nearCenter + up * nearHeightHalf - side * nearWidthHalf;
-  glm::vec3 nearTopRight = nearCenter + up * nearHeightHalf + side * nearWidthHalf;
-  glm::vec3 nearBottomLeft = nearCenter - up * nearHeightHalf - side * nearWidthHalf;
-  glm::vec3 nearBottomRight = nearCenter - up * nearHeightHalf + side * nearWidthHalf;
+    // 8 corners
+    glm::vec3 nearTopLeft = nearCenter + up * nearHeightHalf - side * nearWidthHalf;
+    glm::vec3 nearTopRight = nearCenter + up * nearHeightHalf + side * nearWidthHalf;
+    glm::vec3 nearBottomLeft = nearCenter - up * nearHeightHalf - side * nearWidthHalf;
+    glm::vec3 nearBottomRight = nearCenter - up * nearHeightHalf + side * nearWidthHalf;
 
-  glm::vec3 farTopLeft = farCenter + up * farHeightHalf - side * farWidthHalf;
-  glm::vec3 farTopRight = farCenter + up * farHeightHalf + side * farWidthHalf;
-  glm::vec3 farBottomLeft = farCenter - up * farHeightHalf - side * farWidthHalf;
-  glm::vec3 farBottomRight = farCenter - up * farHeightHalf + side * farWidthHalf;
+    glm::vec3 farTopLeft = farCenter + up * farHeightHalf - side * farWidthHalf;
+    glm::vec3 farTopRight = farCenter + up * farHeightHalf + side * farWidthHalf;
+    glm::vec3 farBottomLeft = farCenter - up * farHeightHalf - side * farWidthHalf;
+    glm::vec3 farBottomRight = farCenter - up * farHeightHalf + side * farWidthHalf;
 
-  frustum_.corners[0] = nearTopLeft;
-  frustum_.corners[1] = nearTopRight;
-  frustum_.corners[2] = nearBottomLeft;
-  frustum_.corners[3] = nearBottomRight;
-  frustum_.corners[4] = farTopLeft;
-  frustum_.corners[5] = farTopRight;
-  frustum_.corners[6] = farBottomLeft;
-  frustum_.corners[7] = farBottomRight;
+    frustum_.corners[0] = nearTopLeft;
+    frustum_.corners[1] = nearTopRight;
+    frustum_.corners[2] = nearBottomLeft;
+    frustum_.corners[3] = nearBottomRight;
+    frustum_.corners[4] = farTopLeft;
+    frustum_.corners[5] = farTopRight;
+    frustum_.corners[6] = farBottomLeft;
+    frustum_.corners[7] = farBottomRight;
 
-  // bounding box
-  frustum_.bbox.min = glm::vec3(std::numeric_limits<float>::max());
-  frustum_.bbox.max = glm::vec3(std::numeric_limits<float>::min());
-  for (auto &corner : frustum_.corners) {
-    frustum_.bbox.min.x = std::min(frustum_.bbox.min.x, corner.x);
-    frustum_.bbox.min.y = std::min(frustum_.bbox.min.y, corner.y);
-    frustum_.bbox.min.z = std::min(frustum_.bbox.min.z, corner.z);
+    // bounding box
+    frustum_.bbox.min = glm::vec3(std::numeric_limits<float>::max());
+    frustum_.bbox.max = glm::vec3(std::numeric_limits<float>::min());
 
-    frustum_.bbox.max.x = std::max(frustum_.bbox.max.x, corner.x);
-    frustum_.bbox.max.y = std::max(frustum_.bbox.max.y, corner.y);
-    frustum_.bbox.max.z = std::max(frustum_.bbox.max.z, corner.z);
-  }
+    for (auto &corner : frustum_.corners) {
+        frustum_.bbox.min.x = std::min(frustum_.bbox.min.x, corner.x);
+        frustum_.bbox.min.y = std::min(frustum_.bbox.min.y, corner.y);
+        frustum_.bbox.min.z = std::min(frustum_.bbox.min.z, corner.z);
+
+        frustum_.bbox.max.x = std::max(frustum_.bbox.max.x, corner.x);
+        frustum_.bbox.max.y = std::max(frustum_.bbox.max.y, corner.y);
+        frustum_.bbox.max.z = std::max(frustum_.bbox.max.z, corner.z);
+    }
 }
 
 }

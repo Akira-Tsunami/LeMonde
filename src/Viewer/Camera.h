@@ -44,7 +44,7 @@ class Camera {
   inline const glm::vec3 &up() const { return up_; }
 
  private:
-  float fov_ = glm::radians(60.f);
+  float fov_ = glm::radians(60.f);  // vertical FOV
   float aspect_ = 1.0f;
   float near_ = 0.01f;
   float far_ = 100.f;

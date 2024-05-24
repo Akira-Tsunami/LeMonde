@@ -16,11 +16,11 @@
 
 std::shared_ptr<Monde::View::ViewerManager> viewer = nullptr;
 
-const unsigned int SCR_WIDTH = 1000;
-const unsigned int SCR_HEIGHT = 800;
+const unsigned int INIT_SCR_WIDTH = 1920;
+const unsigned int INIT_SCR_HEIGHT = 1080;
 
-double lastX = SCR_WIDTH / 2.0f;
-double lastY = SCR_HEIGHT / 2.0f;
+double lastX = INIT_SCR_WIDTH / 2.0f;
+double lastY = INIT_SCR_HEIGHT / 2.0f;
 bool firstMouse = true;
 
 void framebufferSizeCallback(GLFWwindow *window, int width, int height);
@@ -67,27 +67,27 @@ int main() {
     glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 3);
     glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 3);
     glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-    glfwWindowHint(GLFW_RESIZABLE, GL_FALSE);
+    glfwWindowHint(GLFW_RESIZABLE, GL_TRUE);
     #ifdef __APPLE__
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
     #endif
 
     /* create a windowed mode window and its OpenGL context */
-    GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LeMonde", nullptr, nullptr);
+    GLFWwindow *window = glfwCreateWindow(INIT_SCR_WIDTH, INIT_SCR_HEIGHT, "LeMonde", nullptr, nullptr);
     if (!window) {
         LOGE("Failed to create GLFW window");
         glfwTerminate();
         return -1;
     }
 
-      /* Make the window's context current */
-      glfwMakeContextCurrent(window);
-      glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
-      glfwSetCursorPosCallback(window, mouseCallback);
-      glfwSetScrollCallback(window, scrollCallback);
+    /* Make the window's context current */
+    glfwMakeContextCurrent(window);
+    glfwSetFramebufferSizeCallback(window, framebufferSizeCallback);
+    glfwSetCursorPosCallback(window, mouseCallback);
+    glfwSetScrollCallback(window, scrollCallback);
 
       // tell GLFW to capture our mouse
-    //    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+      //    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
       /* Load all OpenGL function pointers */
       if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
@@ -145,28 +145,31 @@ int main() {
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
       glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, SCR_WIDTH, SCR_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
       program.use();
       glUniform1i(glGetUniformLocation(program.getId(), "uTexture"), 0);
 
       // init Viewer
       viewer = std::make_shared<Monde::View::ViewerManager>();
-      bool initSuccess = viewer->create(window, SCR_WIDTH, SCR_HEIGHT, (int) texture);
+      bool initSuccess = viewer->create(window, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, (int) texture);
+
       if (!initSuccess) {
         LOGE("Failed to create Viewer");
       } else {
         // real frame buffer size
         int frameWidth, frameHeight;
-        glfwGetFramebufferSize(window, &frameWidth, &frameHeight);
+        
 
         /* Loop until the user closes the window */
         while (!glfwWindowShouldClose(window)) {
           // check exit app
           processInput(window);
 
+          glfwGetFramebufferSize(window, &frameWidth, &frameHeight);
+
           // draw frame
-          int outTex = viewer->drawFrame();
+          int outTex = viewer->drawFrame(frameWidth, frameHeight);
 
           glDisable(GL_BLEND);
           glDisable(GL_DEPTH_TEST);
@@ -212,25 +215,24 @@ int main() {
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly
 // ---------------------------------------------------------------------------------------------------------
 void processInput(GLFWwindow *window) {
-  if (!viewer || viewer->wantCaptureKeyboard()) {
-    return;
-  }
+      if (!viewer || viewer->wantCaptureKeyboard()) { return; }
 
-  if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
-    glfwSetWindowShouldClose(window, true);
-    return;
-  }
+      if (glfwGetKey(window, GLFW_KEY_ESCAPE) == GLFW_PRESS) {
+          glfwSetWindowShouldClose(window, true);
+          return;
+      }
 
-  static bool keyPressed_H = false;
-  int state = glfwGetKey(window, GLFW_KEY_H);
-  if (state == GLFW_PRESS) {
-    if (!keyPressed_H) {
-      keyPressed_H = true;
-      viewer->togglePanelState();
-    }
-  } else if (state == GLFW_RELEASE) {
-    keyPressed_H = false;
-  }
+      static bool keyPressed_H = false;
+      int state = glfwGetKey(window, GLFW_KEY_H);
+      if (state == GLFW_PRESS) {
+           if (!keyPressed_H) {
+              keyPressed_H = true;
+              viewer->togglePanelState();
+           }
+      } 
+      else if (state == GLFW_RELEASE) {
+           keyPressed_H = false;
+      }
 }
 
 // glfw: whenever the window size changed (by OS or user resize) this callback function executes

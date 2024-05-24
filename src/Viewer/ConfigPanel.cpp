@@ -45,12 +45,15 @@ void ConfigPanel::onDraw() {
   ImGui::NewFrame();
 
   // Settings window
-  ImGui::Begin("Settings",
-               nullptr,
-               ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
-                   | ImGuiWindowFlags_AlwaysAutoResize);
+  ImGui::Begin("Settings", nullptr);
+  
+ /* ImGui::Begin("Settings",
+      nullptr,
+      ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
+      | ImGuiWindowFlags_AlwaysAutoResize);*/
+
   drawSettings();
-  ImGui::SetWindowPos(ImVec2(frameWidth_ - ImGui::GetWindowWidth(), 0));
+  // ImGui::SetWindowPos(ImVec2(frameWidth_ - ImGui::GetWindowWidth(), 0));
   ImGui::End();
 
   ImGui::Render();

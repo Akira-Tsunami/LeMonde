@@ -92,4 +92,11 @@ class SmoothOrbitController {
 };
 
 }
+
+class FreeViewController {
+public:
+    FreeViewController() {}
+private:
+
+};
 }
