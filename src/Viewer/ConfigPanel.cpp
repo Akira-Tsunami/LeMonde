@@ -58,153 +58,153 @@ void ConfigPanel::onDraw() {
 }
 
 void ConfigPanel::drawSettings() {
-  // renderer
-  const char *rendererItems[] = {
-      "Software",
-      "OpenGL",
-      "Vulkan",
-  };
-  ImGui::Separator();
-  ImGui::Text("renderer");
-  for (int i = 0; i < 3; i++) {
-    if (ImGui::RadioButton(rendererItems[i], config_.rendererType == i)) {
-      config_.rendererType = i;
-    }
-    ImGui::SameLine();
-  }
-  ImGui::Separator();
-
-  // reset camera
-  ImGui::Separator();
-  ImGui::Text("camera:");
-  ImGui::SameLine();
-  if (ImGui::SmallButton("reset")) {
-    if (resetCameraFunc_) {
-      resetCameraFunc_();
-    }
-  }
-
-  // frame dump
-  ImGui::Separator();
-  ImGui::Text("debug (RenderDoc):");
-  ImGui::SameLine();
-  if (ImGui::SmallButton("capture")) {
-    if (frameDumpFunc_) {
-      frameDumpFunc_();
-    }
-  }
-
-  // fps
-  ImGui::Separator();
-  ImGui::Text("fps: %.1f (%.2f ms/frame)", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
-  ImGui::Text("triangles: %zu", config_.triangleCount_);
-
-  // model
-  ImGui::Separator();
-  ImGui::Text("load model");
-
-  int modelIdx = 0;
-  for (; modelIdx < modelNames_.size(); modelIdx++) {
-    if (config_.modelName == modelNames_[modelIdx]) {
-      break;
-    }
-  }
-  if (ImGui::Combo("##load model", &modelIdx, modelNames_.data(), (int) modelNames_.size())) {
-    reloadModel(modelNames_[modelIdx]);
-  }
-
-  // skybox
-  ImGui::Separator();
-  ImGui::Checkbox("load skybox", &config_.showSkybox);
-
-  if (config_.showSkybox) {
-    // pbr ibl
-    ImGui::Checkbox("enable IBL", &config_.pbrIbl);
-
-    int skyboxIdx = 0;
-    for (; skyboxIdx < skyboxNames_.size(); skyboxIdx++) {
-      if (config_.skyboxName == skyboxNames_[skyboxIdx]) {
-        break;
+      // renderer
+      const char *rendererItems[] = {
+          "Software",
+          "OpenGL",
+          // "Vulkan",
+      };
+      ImGui::Separator();
+      ImGui::Text("renderer");
+      for (int i = 0; i < 2; i++) {
+        if (ImGui::RadioButton(rendererItems[i], config_.rendererType == i)) {
+          config_.rendererType = i;
+        }
+        ImGui::SameLine();
       }
-    }
-    if (ImGui::Combo("##skybox", &skyboxIdx, skyboxNames_.data(), (int) skyboxNames_.size())) {
-      reloadSkybox(skyboxNames_[skyboxIdx]);
-    }
-  }
+      ImGui::Separator();
 
-  // clear Color
-  ImGui::Separator();
-  ImGui::Text("clear color");
-  ImGui::ColorEdit4("clear color", (float *) &config_.clearColor, ImGuiColorEditFlags_NoLabel);
-
-  // wireframe
-  ImGui::Separator();
-  ImGui::Checkbox("wireframe", &config_.wireframe);
-
-  // world axis
-  ImGui::Separator();
-  ImGui::Checkbox("world axis", &config_.worldAxis);
-
-  // shadow floor
-  ImGui::Separator();
-  ImGui::Checkbox("shadow floor", &config_.showFloor);
-  config_.shadowMap = config_.showFloor;
-
-  if (!config_.wireframe) {
-    // light
-    ImGui::Separator();
-    ImGui::Text("ambient color");
-    ImGui::ColorEdit3("ambient color", (float *) &config_.ambientColor, ImGuiColorEditFlags_NoLabel);
-
-    ImGui::Separator();
-    ImGui::Checkbox("point light", &config_.showLight);
-    if (config_.showLight) {
-      ImGui::Text("light color");
-      ImGui::ColorEdit3("light color", (float *) &config_.pointLightColor, ImGuiColorEditFlags_NoLabel);
-
-      ImGui::Text("light position");
-      ImGui::SliderAngle("##light position", &lightPositionAngle_, 0, 360.f);
-    }
-
-    // mipmaps
-    ImGui::Separator();
-    if (ImGui::Checkbox("mipmaps", &config_.mipmaps)) {
-      if (resetMipmapsFunc_) {
-        resetMipmapsFunc_();
+      // reset camera
+      ImGui::Separator();
+      ImGui::Text("camera:");
+      ImGui::SameLine();
+      if (ImGui::SmallButton("reset")) {
+        if (resetCameraFunc_) {
+          resetCameraFunc_();
+        }
       }
-    }
-  }
 
-  // face cull
-  ImGui::Separator();
-  ImGui::Checkbox("cull face", &config_.cullFace);
+      // frame dump
+      ImGui::Separator();
+      ImGui::Text("debug (RenderDoc):");
+      ImGui::SameLine();
+      if (ImGui::SmallButton("capture")) {
+        if (frameDumpFunc_) {
+          frameDumpFunc_();
+        }
+      }
 
-  // depth test
-  ImGui::Separator();
-  ImGui::Checkbox("depth test", &config_.depthTest);
+      // fps
+      ImGui::Separator();
+      ImGui::Text("fps: %.1f (%.2f ms/frame)", ImGui::GetIO().Framerate, 1000.0f / ImGui::GetIO().Framerate);
+      ImGui::Text("triangles: %zu", config_.triangleCount_);
 
-  // reverse z
-  ImGui::Separator();
-  if (ImGui::Checkbox("reverse z", &config_.reverseZ)) {
-    if (resetReverseZFunc_) {
-      resetReverseZFunc_();
-    }
-  }
+      // model
+      ImGui::Separator();
+      ImGui::Text("load model");
 
-  // Anti aliasing
-  const char *aaItems[] = {
-      "NONE",
-      "MSAA",
-      "FXAA",
-  };
-  ImGui::Separator();
-  ImGui::Text("Anti-aliasing");
-  for (int i = 0; i < 3; i++) {
-    if (ImGui::RadioButton(aaItems[i], config_.aaType == i)) {
-      config_.aaType = i;
-    }
-    ImGui::SameLine();
-  }
+      int modelIdx = 0;
+      for (; modelIdx < modelNames_.size(); modelIdx++) {
+        if (config_.modelName == modelNames_[modelIdx]) {
+          break;
+        }
+      }
+      if (ImGui::Combo("##load model", &modelIdx, modelNames_.data(), (int) modelNames_.size())) {
+        reloadModel(modelNames_[modelIdx]);
+      }
+
+      // skybox
+      ImGui::Separator();
+      ImGui::Checkbox("load skybox", &config_.showSkybox);
+
+      if (config_.showSkybox) {
+        // pbr ibl
+        ImGui::Checkbox("enable IBL", &config_.pbrIbl);
+
+        int skyboxIdx = 0;
+        for (; skyboxIdx < skyboxNames_.size(); skyboxIdx++) {
+          if (config_.skyboxName == skyboxNames_[skyboxIdx]) {
+            break;
+          }
+        }
+        if (ImGui::Combo("##skybox", &skyboxIdx, skyboxNames_.data(), (int) skyboxNames_.size())) {
+          reloadSkybox(skyboxNames_[skyboxIdx]);
+        }
+      }
+
+      // clear Color
+      ImGui::Separator();
+      ImGui::Text("clear color");
+      ImGui::ColorEdit4("clear color", (float *) &config_.clearColor, ImGuiColorEditFlags_NoLabel);
+
+      // wireframe
+      ImGui::Separator();
+      ImGui::Checkbox("wireframe", &config_.wireframe);
+
+      // world axis
+      ImGui::Separator();
+      ImGui::Checkbox("world axis", &config_.worldAxis);
+
+      // shadow floor
+      ImGui::Separator();
+      ImGui::Checkbox("shadow floor", &config_.showFloor);
+      config_.shadowMap = config_.showFloor;
+
+      if (!config_.wireframe) {
+        // light
+        ImGui::Separator();
+        ImGui::Text("ambient color");
+        ImGui::ColorEdit3("ambient color", (float *) &config_.ambientColor, ImGuiColorEditFlags_NoLabel);
+
+        ImGui::Separator();
+        ImGui::Checkbox("point light", &config_.showLight);
+        if (config_.showLight) {
+          ImGui::Text("light color");
+          ImGui::ColorEdit3("light color", (float *) &config_.pointLightColor, ImGuiColorEditFlags_NoLabel);
+
+          ImGui::Text("light position");
+          ImGui::SliderAngle("##light position", &lightPositionAngle_, 0, 360.f);
+        }
+
+        // mipmaps
+        ImGui::Separator();
+        if (ImGui::Checkbox("mipmaps", &config_.mipmaps)) {
+          if (resetMipmapsFunc_) {
+            resetMipmapsFunc_();
+          }
+        }
+      }
+
+      // face cull
+      ImGui::Separator();
+      ImGui::Checkbox("cull face", &config_.cullFace);
+
+      // depth test
+      ImGui::Separator();
+      ImGui::Checkbox("depth test", &config_.depthTest);
+
+      // reverse z
+      ImGui::Separator();
+      if (ImGui::Checkbox("reverse z", &config_.reverseZ)) {
+        if (resetReverseZFunc_) {
+          resetReverseZFunc_();
+        }
+      }
+
+      // Anti aliasing
+      const char *aaItems[] = {
+          "NONE",
+          "MSAA",
+          "FXAA",
+      };
+      ImGui::Separator();
+      ImGui::Text("Anti-aliasing");
+      for (int i = 0; i < 3; i++) {
+        if (ImGui::RadioButton(aaItems[i], config_.aaType == i)) {
+          config_.aaType = i;
+        }
+        ImGui::SameLine();
+      }
 }
 
 void ConfigPanel::destroy() {
