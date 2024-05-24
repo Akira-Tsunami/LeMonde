@@ -8,7 +8,7 @@
 
 #include "Base/GLMInc.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class BoundingBox {
  public:

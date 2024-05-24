@@ -14,7 +14,7 @@
 #include "Render/Renderer.h"
 #include "Render/Framebuffer.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 constexpr int kIrradianceMapSize = 32;

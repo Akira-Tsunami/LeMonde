@@ -12,7 +12,7 @@
 #include "Render/Software/TextureSoft.h"
 #include "Shader/Software/ShaderSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define CASE_CREATE_SHADER_SOFT(shading, source) case shading: \

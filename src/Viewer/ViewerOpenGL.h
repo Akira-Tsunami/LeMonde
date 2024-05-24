@@ -13,7 +13,7 @@
 #include "Render/OpenGL/ShaderProgramOpenGL.h"
 #include "Render/OpenGL/OpenGLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define CASE_CREATE_SHADER_GL(shading, source) case shading: \

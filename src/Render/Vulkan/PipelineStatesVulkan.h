@@ -13,7 +13,7 @@
 #include "ShaderProgramVulkan.h"
 #include "VKContext.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct PipelineContainerVK {
   VkPipelineLayout pipelineLayout_ = VK_NULL_HANDLE;

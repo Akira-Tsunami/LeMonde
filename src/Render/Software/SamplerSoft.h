@@ -9,7 +9,7 @@
 #include <functional>
 #include "TextureSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #define CoordMod(i, n) ((i) & ((n) - 1) + (n)) & ((n) - 1)  // (i % n + n) % n
 #define CoordMirror(i) (i) >= 0 ? (i) : (-1 - (i))

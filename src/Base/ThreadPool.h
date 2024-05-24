@@ -14,7 +14,7 @@
 #include <queue>
 #include <thread>
 
-namespace SoftGL {
+namespace Monde {
 
 class ThreadPool {
  public:

@@ -11,7 +11,7 @@
 #include "Render/Vertex.h"
 #include "VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class VertexArrayObjectVulkan : public VertexArrayObject {
  public:

@@ -9,7 +9,7 @@
 #include "GLMInc.h"
 #include "MemoryUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 enum BufferLayout {
   Layout_Linear,

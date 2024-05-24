@@ -11,7 +11,7 @@
 #include <unordered_map>
 #include "Config.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 class ConfigPanel {

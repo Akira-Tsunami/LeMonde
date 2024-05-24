@@ -8,7 +8,7 @@
 
 #include "Render/PipelineStates.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace OpenGL {
 
 #define CASE_CVT_GL(PRE, TOKEN) case PRE##TOKEN: return GL_##TOKEN

@@ -11,7 +11,7 @@
 #include <string>
 #include <cstdint>
 
-namespace SoftGL {
+namespace Monde {
 
 enum ShaderStage {
   ShaderStage_Vertex,

@@ -8,7 +8,7 @@
 
 #include <string>
 
-namespace SoftGL {
+namespace Monde {
 
 class StringUtils {
  public:

@@ -8,7 +8,7 @@
 
 #include "renderdoc_app.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 // use RenderDoc In-application API to dump frame

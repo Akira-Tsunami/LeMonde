@@ -10,7 +10,7 @@
 #include "Base/FileUtils.h"
 #include "Render/OpenGL/OpenGLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 void ShaderGLSL::setHeader(const std::string &header) {
   header_ = header;

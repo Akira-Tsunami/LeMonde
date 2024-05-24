@@ -11,7 +11,7 @@
 #include "Render/Vulkan/TextureVulkan.h"
 #include "VKContext.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct FrameBufferContainerVK {
   std::vector<VkImageView> attachments;

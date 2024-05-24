@@ -9,7 +9,7 @@
 #include <string>
 #include <cstdint>
 
-namespace SoftGL {
+namespace Monde {
 
 struct ShaderCompilerResult;
 

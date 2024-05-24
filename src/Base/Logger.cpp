@@ -6,7 +6,7 @@
 
 #include "Logger.h"
 
-namespace SoftGL {
+namespace Monde {
 
 void *Logger::logContext_ = nullptr;
 LogFunc Logger::logFunc_ = nullptr;

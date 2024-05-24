@@ -9,7 +9,7 @@
 #include <glad/glad.h>
 #include "Render/Vulkan/VKContext.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #ifdef PLATFORM_WINDOWS
 #  define glImportSemaphore glImportSemaphoreWin32HandleEXT

@@ -13,7 +13,7 @@
 #include "PipelineStates.h"
 #include "Vertex.h"
 
-namespace SoftGL {
+namespace Monde {
 
 enum RendererType {
   Renderer_SOFT,

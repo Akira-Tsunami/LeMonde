@@ -8,7 +8,7 @@
 
 #define MIN_ORBIT_ARM_LENGTH 1.f
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 static const glm::vec3 init_eye_(-1.5, 3, 3);

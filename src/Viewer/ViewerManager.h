@@ -15,7 +15,7 @@
 #include "ViewerVulkan.h"
 #include "RenderDebug.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define RENDER_TYPE_NONE (-1)

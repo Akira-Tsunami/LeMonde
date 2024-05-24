@@ -14,7 +14,7 @@
 #include "QuadFilter.h"
 #include "Environment.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 class Viewer {

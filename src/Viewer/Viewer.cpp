@@ -10,7 +10,7 @@
 #include "Base/HashUtils.h"
 #include "Environment.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define SHADOW_MAP_WIDTH 512

@@ -10,7 +10,7 @@
 #include "Render/Uniform.h"
 #include "Render/Software/ShaderProgramSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class UniformBlockSoft : public UniformBlock {
  public:

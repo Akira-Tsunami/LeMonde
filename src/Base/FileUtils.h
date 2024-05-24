@@ -9,7 +9,7 @@
 #include <fstream>
 #include "Logger.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class FileUtils {
  public:

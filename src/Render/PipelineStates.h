@@ -8,7 +8,7 @@
 
 #include "RenderStates.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class PipelineStates {
  public:

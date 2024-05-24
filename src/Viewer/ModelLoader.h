@@ -15,7 +15,7 @@
 #include "Config.h"
 #include "ConfigPanel.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 class ModelLoader {

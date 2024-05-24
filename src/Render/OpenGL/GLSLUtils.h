@@ -9,7 +9,7 @@
 #include <string>
 #include <glad/glad.h>
 
-namespace SoftGL {
+namespace Monde {
 
 constexpr char const *OpenGL_GLSL_VERSION = "#version 330 core";
 constexpr char const *OpenGL_GLSL_DEFINE = "OpenGL";

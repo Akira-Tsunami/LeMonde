@@ -11,7 +11,7 @@
 #include "UniformVulkan.h"
 #include "VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 bool RendererVulkan::create() {
   bool success = false;

@@ -12,7 +12,7 @@
 #include "Render/OpenGL/EnumsOpenGL.h"
 #include "Render/OpenGL/OpenGLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct TextureOpenGLDesc {
   GLint internalformat;

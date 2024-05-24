@@ -9,7 +9,7 @@
 #include "Base/MemoryUtils.h"
 #include "Render/Software/ShaderProgramSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct Viewport {
   float x;

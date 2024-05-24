@@ -10,7 +10,7 @@
 #include "Base/HashUtils.h"
 #include "Base/FileUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 const std::string SHADER_SPV_CACHE_DIR = "./cache/SPV/";
 

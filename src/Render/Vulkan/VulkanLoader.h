@@ -25,7 +25,7 @@
 #define LOAD_VK_FUNC(name) name = (PFN_##name) vkGetInstanceProcAddr(instance, #name)
 #define INIT_VK_FUNC(name) PFN_##name VKLoader::name = nullptr
 
-namespace SoftGL {
+namespace Monde {
 
 class VKLoader {
  public:

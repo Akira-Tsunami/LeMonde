@@ -8,7 +8,7 @@
 
 #include "Base/Geometry.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 constexpr float CAMERA_FOV = 60.f;

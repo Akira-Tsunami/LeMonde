@@ -14,7 +14,7 @@
 #include "Render/OpenGL/GLSLUtils.h"
 #include "Viewer/ViewerManager.h"
 
-std::shared_ptr<SoftGL::View::ViewerManager> viewer = nullptr;
+std::shared_ptr<Monde::View::ViewerManager> viewer = nullptr;
 
 const unsigned int SCR_WIDTH = 1000;
 const unsigned int SCR_HEIGHT = 800;
@@ -73,7 +73,7 @@ int main() {
 #endif
 
   /* create a windowed mode window and its OpenGL context */
-  GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "SoftGLRenderer", nullptr, nullptr);
+  GLFWwindow *window = glfwCreateWindow(SCR_WIDTH, SCR_HEIGHT, "LeMonde", nullptr, nullptr);
   if (!window) {
     LOGE("Failed to create GLFW window");
     glfwTerminate();
@@ -96,7 +96,7 @@ int main() {
     return -1;
   }
 
-  SoftGL::ProgramGLSL program;
+  Monde::ProgramGLSL program;
   if (!program.loadSource(VS, FS)) {
     LOGE("Failed to initialize Shader");
     glfwTerminate();
@@ -115,6 +115,7 @@ int main() {
       0, 1, 3, // first triangle
       1, 2, 3  // second triangle
   };
+
   GLuint VAO, VBO, EBO;
   glGenVertexArrays(1, &VAO);
   glBindVertexArray(VAO);
@@ -150,7 +151,7 @@ int main() {
   glUniform1i(glGetUniformLocation(program.getId(), "uTexture"), 0);
 
   // init Viewer
-  viewer = std::make_shared<SoftGL::View::ViewerManager>();
+  viewer = std::make_shared<Monde::View::ViewerManager>();
   bool initSuccess = viewer->create(window, SCR_WIDTH, SCR_HEIGHT, (int) texture);
   if (!initSuccess) {
     LOGE("Failed to create Viewer");

@@ -13,7 +13,7 @@
 #include "Render/Uniform.h"
 #include "Render/ShaderProgram.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 enum AlphaMode {

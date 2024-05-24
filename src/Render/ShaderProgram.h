@@ -10,7 +10,7 @@
 #include <set>
 #include "Uniform.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ShaderProgram {
  public:

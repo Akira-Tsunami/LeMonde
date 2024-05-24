@@ -9,7 +9,7 @@
 #include <memory>
 #include "Texture.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct FrameBufferAttachment {
   std::shared_ptr<Texture> tex = nullptr;

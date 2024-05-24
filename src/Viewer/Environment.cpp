@@ -11,7 +11,7 @@
 #include "Base/Logger.h"
 #include "Render/Software/TextureSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 const std::string IBL_TEX_CACHE_DIR = "./cache/IBL/";

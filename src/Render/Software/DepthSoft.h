@@ -8,7 +8,7 @@
 
 #include "Render/PipelineStates.h"
 
-namespace SoftGL {
+namespace Monde {
 
 bool DepthTest(float &a, float &b, DepthFunction func) {
   switch (func) {

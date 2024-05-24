@@ -8,7 +8,7 @@
 
 #define BIND_TEX_OPENGL(n) case n: GL_CHECK(glActiveTexture(GL_TEXTURE##n)); break;
 
-namespace SoftGL {
+namespace Monde {
 
 class UniformBlockOpenGL : public UniformBlock {
  public:

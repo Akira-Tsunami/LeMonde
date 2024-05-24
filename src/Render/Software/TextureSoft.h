@@ -12,7 +12,7 @@
 #include "Base/ImageUtils.h"
 #include "Render/Texture.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #define SOFT_MS_CNT 4
 

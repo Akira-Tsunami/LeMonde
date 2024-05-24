@@ -13,7 +13,7 @@
 #include "Base/UUID.h"
 #include "Texture.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ShaderProgram;
 

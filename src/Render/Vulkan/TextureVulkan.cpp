@@ -7,7 +7,7 @@
 #include "TextureVulkan.h"
 #include "Base/Timer.h"
 
-namespace SoftGL {
+namespace Monde {
 
 TextureVulkan::TextureVulkan(VKContext &ctx, const TextureDesc &desc) : vkCtx_(ctx), glInterop_({ctx}) {
   device_ = ctx.device();

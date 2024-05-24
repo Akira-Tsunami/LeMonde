@@ -11,7 +11,7 @@
 #include "Render/ShaderProgram.h"
 #include "ShaderSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ShaderProgramSoft : public ShaderProgram {
  public:

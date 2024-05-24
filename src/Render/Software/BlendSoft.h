@@ -8,7 +8,7 @@
 
 #include "Render/PipelineStates.h"
 
-namespace SoftGL {
+namespace Monde {
 
 template<typename T>
 T calcBlendFactor(const T &src, const float &srcAlpha,

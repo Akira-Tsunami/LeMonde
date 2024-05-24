@@ -13,7 +13,7 @@
 #include "SPIRV/SpvCompiler.h"
 #include "VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #define DESCRIPTOR_SET_POOL_MAX_SIZE 64
 

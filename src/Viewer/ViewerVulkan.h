@@ -12,7 +12,7 @@
 #include "Render/Vulkan/TextureVulkan.h"
 #include "Render/Vulkan/VKGLInterop.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define CASE_CREATE_SHADER_VK(shading, source) case shading: \

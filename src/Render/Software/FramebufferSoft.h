@@ -10,7 +10,7 @@
 #include "Render/Framebuffer.h"
 #include "Render/Software/TextureSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class FrameBufferSoft : public FrameBuffer {
  public:

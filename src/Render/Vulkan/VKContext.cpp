@@ -29,7 +29,7 @@
 
 #pragma clang diagnostic pop
 
-namespace SoftGL {
+namespace Monde {
 
 #define COMMAND_BUFFER_POOL_MAX_SIZE 128
 #define UNIFORM_BUFFER_POOL_MAX_SIZE 128
@@ -76,7 +76,7 @@ static VKAPI_ATTR VkBool32 VKAPI_CALL vkDebugCallback(VkDebugUtilsMessageSeverit
     default:
       break;
   }
-  SoftGL::Logger::log(level, __FILE__, __LINE__, "validation layer: %s", pCallbackData->pMessage);
+  Monde::Logger::log(level, __FILE__, __LINE__, "validation layer: %s", pCallbackData->pMessage);
   return VK_FALSE;
 }
 

@@ -10,7 +10,7 @@
 #include "Render/PipelineStates.h"
 #include "VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace VK {
 
 static inline VkImageType cvtImageType(TextureType type) {

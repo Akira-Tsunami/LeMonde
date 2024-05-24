@@ -6,7 +6,7 @@
 
 #include "VulkanLoader.h"
 
-namespace SoftGL {
+namespace Monde {
 
 INIT_VK_FUNC(vkCreateDebugUtilsMessengerEXT);
 INIT_VK_FUNC(vkDestroyDebugUtilsMessengerEXT);

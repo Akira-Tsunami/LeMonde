@@ -9,7 +9,7 @@
 #include "Base/UUID.h"
 #include "Render/Vertex.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class VertexArrayObjectSoft : public VertexArrayObject {
  public:

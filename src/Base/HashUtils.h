@@ -9,7 +9,7 @@
 #include <string>
 #include "md5.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class HashUtils {
  public:

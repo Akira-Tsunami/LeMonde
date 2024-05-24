@@ -9,7 +9,7 @@
 #include "Render/Renderer.h"
 #include "Model.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 class QuadFilter {

@@ -12,7 +12,7 @@
 #include "Base/Logger.h"
 #include "Base/FileUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 bool ConfigPanel::init(void *window, int width, int height) {

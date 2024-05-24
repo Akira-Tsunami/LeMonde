@@ -9,7 +9,7 @@
 #include <functional>
 #include "SamplerSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class PixelQuadContext;
 constexpr float PI = 3.14159265359;

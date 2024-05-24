@@ -11,12 +11,12 @@
 #include <cstdarg>
 #include <mutex>
 
-namespace SoftGL {
+namespace Monde {
 
-#define LOGI(...) SoftGL::Logger::log(SoftGL::LOG_INFO,     __FILE__, __LINE__, __VA_ARGS__)
-#define LOGD(...) SoftGL::Logger::log(SoftGL::LOG_DEBUG,    __FILE__, __LINE__, __VA_ARGS__)
-#define LOGW(...) SoftGL::Logger::log(SoftGL::LOG_WARNING,  __FILE__, __LINE__, __VA_ARGS__)
-#define LOGE(...) SoftGL::Logger::log(SoftGL::LOG_ERROR,    __FILE__, __LINE__, __VA_ARGS__)
+#define LOGI(...) Monde::Logger::log(Monde::LOG_INFO,     __FILE__, __LINE__, __VA_ARGS__)
+#define LOGD(...) Monde::Logger::log(Monde::LOG_DEBUG,    __FILE__, __LINE__, __VA_ARGS__)
+#define LOGW(...) Monde::Logger::log(Monde::LOG_WARNING,  __FILE__, __LINE__, __VA_ARGS__)
+#define LOGE(...) Monde::Logger::log(Monde::LOG_ERROR,    __FILE__, __LINE__, __VA_ARGS__)
 
 static constexpr int MAX_LOG_LENGTH = 1024;
 

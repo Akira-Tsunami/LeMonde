@@ -11,7 +11,7 @@
 #include "Render/OpenGL/TextureOpenGL.h"
 #include "Render/OpenGL/OpenGLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class FrameBufferOpenGL : public FrameBuffer {
  public:

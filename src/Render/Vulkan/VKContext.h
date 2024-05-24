@@ -15,7 +15,7 @@
 #define VMA_VULKAN_VERSION 1002000  // Vulkan 1.2
 #include "vk_mem_alloc.h"
 
-namespace SoftGL {
+namespace Monde {
 
 struct QueueFamilyIndices {
   int32_t graphicsFamily = -1;

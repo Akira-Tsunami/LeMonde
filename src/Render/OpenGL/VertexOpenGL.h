@@ -10,7 +10,7 @@
 #include "Render/Vertex.h"
 #include "Render/OpenGL/OpenGLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class VertexArrayObjectOpenGL : public VertexArrayObject {
  public:

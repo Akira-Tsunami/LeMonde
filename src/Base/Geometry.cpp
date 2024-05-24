@@ -7,7 +7,7 @@
 #include "Geometry.h"
 #include <algorithm>
 
-namespace SoftGL {
+namespace Monde {
 
 void BoundingBox::getCorners(glm::vec3 *dst) const {
   dst[0] = glm::vec3(min.x, max.y, max.z);

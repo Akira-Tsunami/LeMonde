@@ -13,7 +13,7 @@
 #include "Render/Software/VertexSoft.h"
 #include "Render/Software/FramebufferSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class RendererSoft : public Renderer {
  public:

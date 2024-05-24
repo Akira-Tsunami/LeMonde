@@ -6,7 +6,7 @@
 
 #pragma once
 
-namespace SoftGL {
+namespace Monde {
 
 template<typename T>
 class UUID {

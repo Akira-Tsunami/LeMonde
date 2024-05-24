@@ -9,7 +9,7 @@
 #include "Base/Logger.h"
 #include "VKContext.h"
 
-namespace SoftGL {
+namespace Monde {
 
 static inline const char *vkResultStr(VkResult ret) {
   switch ((VkResult) ret) {

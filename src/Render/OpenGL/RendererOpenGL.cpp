@@ -14,7 +14,7 @@
 
 #define GL_STATE_SET(var, gl_state) if (var) GL_CHECK(glEnable(gl_state)); else GL_CHECK(glDisable(gl_state));
 
-namespace SoftGL {
+namespace Monde {
 
 // framebuffer
 std::shared_ptr<FrameBuffer> RendererOpenGL::createFrameBuffer(bool offscreen) {

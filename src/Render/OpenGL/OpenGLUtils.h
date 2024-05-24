@@ -10,7 +10,7 @@
 #include <glad/glad.h>
 #include "Base/Logger.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class OpenGLUtils {
  public:

@@ -18,7 +18,7 @@
 #include "Base/Logger.h"
 #include "Cube.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 ModelLoader::ModelLoader(Config &config) : config_(config) {

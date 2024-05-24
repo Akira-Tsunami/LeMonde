@@ -12,7 +12,7 @@
 
 #define SOFTGL_ALIGNMENT 32
 
-namespace SoftGL {
+namespace Monde {
 
 class MemoryUtils {
  public:

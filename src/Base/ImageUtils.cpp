@@ -14,7 +14,7 @@
 #include "ImageUtils.h"
 #include "Logger.h"
 
-namespace SoftGL {
+namespace Monde {
 
 std::shared_ptr<Buffer<RGBA>> ImageUtils::readImageRGBA(const std::string &path) {
   int iw = 0, ih = 0, n = 0;

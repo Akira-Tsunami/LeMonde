@@ -6,7 +6,7 @@
 
 #include "QuadFilter.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 QuadFilter::QuadFilter(int width, int height, const std::shared_ptr<Renderer> &renderer,

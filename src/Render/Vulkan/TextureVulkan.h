@@ -14,7 +14,7 @@
 #include "EnumsVulkan.h"
 #include "VKGLInterop.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class TextureVulkan : public Texture {
  public:

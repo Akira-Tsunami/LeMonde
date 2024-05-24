@@ -12,7 +12,7 @@
 #include "Base/Buffer.h"
 #include "Base/GLMInc.h"
 
-namespace SoftGL {
+namespace Monde {
 
 enum WrapMode {
   Wrap_REPEAT,

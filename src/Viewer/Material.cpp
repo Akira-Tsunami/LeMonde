@@ -6,7 +6,7 @@
 
 #include "Material.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define CASE_ENUM_STR(type) case type: return #type

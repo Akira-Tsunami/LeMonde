@@ -9,7 +9,7 @@
 #include "Render/OpenGL/OpenGLUtils.h"
 #include "Render/Vulkan/VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #ifdef PLATFORM_WINDOWS
 constexpr const char *HOST_MEMORY_EXTENSION_NAME = VK_KHR_EXTERNAL_MEMORY_WIN32_EXTENSION_NAME;

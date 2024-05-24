@@ -14,7 +14,7 @@
 #include "Render/Vertex.h"
 #include "Material.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 struct Vertex {

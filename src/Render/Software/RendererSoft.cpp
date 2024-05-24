@@ -15,7 +15,7 @@
 #include "BlendSoft.h"
 #include "DepthSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 
 #define RASTER_MULTI_THREAD
 

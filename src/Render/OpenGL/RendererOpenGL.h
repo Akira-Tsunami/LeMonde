@@ -10,7 +10,7 @@
 #include "Render/OpenGL/VertexOpenGL.h"
 #include "Render/OpenGL/ShaderProgramOpenGL.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class RendererOpenGL : public Renderer {
  public:

@@ -6,7 +6,7 @@
 
 #include "Timer.h"
 
-namespace SoftGL {
+namespace Monde {
 
 void Timer::start() {
   start_ = std::chrono::steady_clock::now();

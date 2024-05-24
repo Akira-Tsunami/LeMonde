@@ -14,7 +14,7 @@
 #include "PipelineStatesVulkan.h"
 #include "VulkanUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class RendererVulkan : public Renderer {
  public:

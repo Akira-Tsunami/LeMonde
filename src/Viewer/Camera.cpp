@@ -7,7 +7,7 @@
 #include "Camera.h"
 #include <algorithm>
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 void Camera::setPerspective(float fov, float aspect, float near, float far) {

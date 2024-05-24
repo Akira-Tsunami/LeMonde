@@ -10,7 +10,7 @@
 #include "Base/GLMInc.h"
 #include "Render/Renderer.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 const std::string ASSETS_DIR = "./assets/";

@@ -5,7 +5,7 @@
 #include "VKContext.h"
 #include "ShaderProgramVulkan.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class UniformBlockVulkan : public UniformBlock {
  public:

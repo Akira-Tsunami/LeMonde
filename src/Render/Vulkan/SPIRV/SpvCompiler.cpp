@@ -12,7 +12,7 @@
 #include "Base/Timer.h"
 #include "SpvCache.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ReflectionTraverser : public glslang::TIntermTraverser {
  public:

@@ -9,7 +9,7 @@
 #include <string>
 #include "Buffer.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ImageUtils {
  public:

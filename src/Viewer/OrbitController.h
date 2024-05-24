@@ -9,7 +9,7 @@
 #include <memory>
 #include "Camera.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 class OrbitController {

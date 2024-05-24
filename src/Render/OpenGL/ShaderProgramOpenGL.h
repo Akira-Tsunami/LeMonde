@@ -11,7 +11,7 @@
 #include "Render/ShaderProgram.h"
 #include "GLSLUtils.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class ShaderProgramOpenGL : public ShaderProgram {
  public:

@@ -8,7 +8,7 @@
 
 #include "Render/Software/ShaderProgramSoft.h"
 
-namespace SoftGL {
+namespace Monde {
 namespace ShaderIBLIrradiance {
 
 struct ShaderDefines {

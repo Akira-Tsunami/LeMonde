@@ -8,7 +8,7 @@
 
 #include "Base/GLMInc.h"
 
-namespace SoftGL {
+namespace Monde {
 
 enum DepthFunction {
   DepthFunc_NEVER,

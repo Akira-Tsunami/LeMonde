@@ -12,7 +12,7 @@
 #include "windows.h"
 #endif
 
-namespace SoftGL {
+namespace Monde {
 namespace View {
 
 #define RENDER_DOC_LIBRARY "renderdoc.dll"

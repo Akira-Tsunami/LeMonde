@@ -11,7 +11,7 @@
 
 #include "Logger.h"
 
-namespace SoftGL {
+namespace Monde {
 
 class Timer {
  public:
@@ -45,8 +45,8 @@ class ScopedTimer {
 };
 
 #ifndef NDEBUG
-#   define FUNCTION_TIMED(X) SoftGL::ScopedTimer _functionTimer = (X)
-#   define SCOPE_TIMED(X) if (SoftGL::ScopedTimer _scopeTimer = (X))
+#   define FUNCTION_TIMED(X) Monde::ScopedTimer _functionTimer = (X)
+#   define SCOPE_TIMED(X) if (Monde::ScopedTimer _scopeTimer = (X))
 #else
 #   define FUNCTION_TIMED(X)
 #   define SCOPE_TIMED(X)
