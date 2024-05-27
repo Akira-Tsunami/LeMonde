@@ -1,10 +1,10 @@
 cmake_minimum_required(VERSION 3.10)
-project(SoftGLRender)
+project(LeMonde)
 
 set(CMAKE_POLICY_DEFAULT_CMP0077 NEW)
 set(CMAKE_CXX_STANDARD 11)
 
-set(TARGET_NAME SoftGLRender)
+set(TARGET_NAME LeMonde)
 set(THIRD_PARTY_DIR "${CMAKE_CURRENT_SOURCE_DIR}/third_party")
 
 # enable SIMD
@@ -36,6 +36,7 @@ include_directories(
         "${THIRD_PARTY_DIR}/glslang"
         "${THIRD_PARTY_DIR}/vma"
         "${THIRD_PARTY_DIR}/renderdoc"
+        "${THIRD_PARTY_DIR}/tinygltf/include"
         "${CMAKE_CURRENT_SOURCE_DIR}/src"
 )
 
@@ -75,6 +76,7 @@ file(GLOB SOFTGL_SRC
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Viewer/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Viewer/Shader/GLSL/*.cpp
         ${CMAKE_CURRENT_SOURCE_DIR}/src/Viewer/Shader/Software/*.cpp
+        ${CMAKE_CURRENT_SOURCE_DIR}/src/Loader/*.cpp
         )
 
 # imgui src
@@ -88,6 +90,7 @@ add_executable(${TARGET_NAME}
         "${THIRD_PARTY_DIR}/glad/src/glad.c"
         "${THIRD_PARTY_DIR}/json11/json11.cpp"
         "${THIRD_PARTY_DIR}/md5/md5.c"
+        "${THIRD_PARTY_DIR}/tinygltf/src/tiny_gltf.cc"
         )
 
 set(LINK_LIBS

@@ -13,6 +13,16 @@
 #include "Base/Logger.h"
 #include "Render/OpenGL/GLSLUtils.h"
 #include "Viewer/ViewerManager.h"
+#include <Loader/Loader.h>
+
+/*
+* Both ModelLoader.h and tiny_gltf.h include the stb (header-only) library,
+* we temporarly make sure the implementation of stb in main.cpp, for clarification 
+*/
+#define STB_IMAGE_IMPLEMENTATION
+#define STB_IMAGE_WRITE_IMPLEMENTATION
+#include <stb/stb_image.h>
+#include <stb/stb_image_write.h>
 
 std::shared_ptr<Monde::View::ViewerManager> viewer = nullptr;
 
@@ -79,6 +89,8 @@ int main() {
         glfwTerminate();
         return -1;
     }
+
+    GltfModel* currModel = Loader::Get()->Load<GltfModel>("E:\\OpenGL\\tinygltf\\models\\Cube\\Cube.gltf");
 
     /* Make the window's context current */
     glfwMakeContextCurrent(window);
