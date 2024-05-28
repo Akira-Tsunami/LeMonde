@@ -39,25 +39,25 @@ bool ConfigPanel::init(void *window, int width, int height) {
 }
 
 void ConfigPanel::onDraw() {
-  // Start the Dear ImGui frame
-  ImGui_ImplOpenGL3_NewFrame();
-  ImGui_ImplGlfw_NewFrame();
-  ImGui::NewFrame();
+    // Start the Dear ImGui frame
+    ImGui_ImplOpenGL3_NewFrame();
+    ImGui_ImplGlfw_NewFrame();
+    ImGui::NewFrame();
 
-  // Settings window
-  ImGui::Begin("Settings", nullptr);
+    // Settings window
+    ImGui::Begin("Settings", nullptr);
   
- /* ImGui::Begin("Settings",
-      nullptr,
-      ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
-      | ImGuiWindowFlags_AlwaysAutoResize);*/
+    /* ImGui::Begin("Settings",
+        nullptr,
+        ImGuiWindowFlags_NoSavedSettings | ImGuiWindowFlags_NoMove | ImGuiWindowFlags_NoResize
+        | ImGuiWindowFlags_AlwaysAutoResize);*/
 
-  drawSettings();
-  // ImGui::SetWindowPos(ImVec2(frameWidth_ - ImGui::GetWindowWidth(), 0));
-  ImGui::End();
+    drawSettings();
+    // ImGui::SetWindowPos(ImVec2(frameWidth_ - ImGui::GetWindowWidth(), 0));
+    ImGui::End();
 
-  ImGui::Render();
-  ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
+    ImGui::Render();
+    ImGui_ImplOpenGL3_RenderDrawData(ImGui::GetDrawData());
 }
 
 void ConfigPanel::drawSettings() {

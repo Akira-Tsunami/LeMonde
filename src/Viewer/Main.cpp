@@ -68,7 +68,7 @@ static void glfwErrorCallback(int error, const char *description) {
 }
 
 int main() {
-  /* Initialize the library */
+    /* Initialize the library */
     glfwSetErrorCallback(glfwErrorCallback);
     if (!glfwInit()) {
         LOGE("Failed to initialize GLFW");
@@ -98,130 +98,130 @@ int main() {
     glfwSetCursorPosCallback(window, mouseCallback);
     glfwSetScrollCallback(window, scrollCallback);
 
-      // tell GLFW to capture our mouse
-      //    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
+    // tell GLFW to capture our mouse
+    //    glfwSetInputMode(window, GLFW_CURSOR, GLFW_CURSOR_DISABLED);
 
-      /* Load all OpenGL function pointers */
-      if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
-        LOGE("Failed to initialize GLAD");
-        glfwTerminate();
-        return -1;
-      }
+    /* Load all OpenGL function pointers */
+    if (!gladLoadGLLoader((GLADloadproc) glfwGetProcAddress)) {
+    LOGE("Failed to initialize GLAD");
+    glfwTerminate();
+    return -1;
+    }
 
-      Monde::ProgramGLSL program;
-      if (!program.loadSource(VS, FS)) {
-        LOGE("Failed to initialize Shader");
-        glfwTerminate();
-        return -1;
-      }
+    Monde::ProgramGLSL program;
+    if (!program.loadSource(VS, FS)) {
+    LOGE("Failed to initialize Shader");
+    glfwTerminate();
+    return -1;
+    }
 
-      // set up vertex data (and buffer(s)) and configure vertex attributes
-      float vertices[] = {
-          // positions | texture coords
-          1.f, 1.f, 0.0f, 1.0f, 1.0f, // top right
-          1.f, -1.f, 0.0f, 1.0f, 0.0f, // bottom right
-          -1.f, -1.f, 0.0f, 0.0f, 0.0f, // bottom left
-          -1.f, 1.f, 0.0f, 0.0f, 1.0f  // top left
-      };
-      unsigned int indices[] = {
-          0, 1, 3, // first triangle
-          1, 2, 3  // second triangle
-      };
+    // set up vertex data (and buffer(s)) and configure vertex attributes
+    float vertices[] = {
+        // positions | texture coords
+        1.f, 1.f, 0.0f, 1.0f, 1.0f, // top right
+        1.f, -1.f, 0.0f, 1.0f, 0.0f, // bottom right
+        -1.f, -1.f, 0.0f, 0.0f, 0.0f, // bottom left
+        -1.f, 1.f, 0.0f, 0.0f, 1.0f  // top left
+    };
+    unsigned int indices[] = {
+        0, 1, 3, // first triangle
+        1, 2, 3  // second triangle
+    };
 
-      GLuint VAO, VBO, EBO;
-      glGenVertexArrays(1, &VAO);
-      glBindVertexArray(VAO);
+    GLuint VAO, VBO, EBO;
+    glGenVertexArrays(1, &VAO);
+    glBindVertexArray(VAO);
 
-      glGenBuffers(1, &VBO);
-      glBindBuffer(GL_ARRAY_BUFFER, VBO);
-      glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
+    glGenBuffers(1, &VBO);
+    glBindBuffer(GL_ARRAY_BUFFER, VBO);
+    glBufferData(GL_ARRAY_BUFFER, sizeof(vertices), vertices, GL_STATIC_DRAW);
 
-      glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
-      glEnableVertexAttribArray(0);
-      glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *) (3 * sizeof(float)));
-      glEnableVertexAttribArray(1);
+    glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 5 * sizeof(float), nullptr);
+    glEnableVertexAttribArray(0);
+    glVertexAttribPointer(1, 2, GL_FLOAT, GL_FALSE, 5 * sizeof(float), (void *) (3 * sizeof(float)));
+    glEnableVertexAttribArray(1);
 
-      glGenBuffers(1, &EBO);
-      glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
-      glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
+    glGenBuffers(1, &EBO);
+    glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, EBO);
+    glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(indices), indices, GL_STATIC_DRAW);
 
-      glBindVertexArray(GL_NONE);
+    glBindVertexArray(GL_NONE);
 
-      // load and create a texture
-      // -------------------------
-      unsigned int texture;
-      glGenTextures(1, &texture);
-      glActiveTexture(GL_TEXTURE0);
-      glBindTexture(GL_TEXTURE_2D, texture);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
-      glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
-      glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
+    // load and create a texture
+    // -------------------------
+    unsigned int texture;
+    glGenTextures(1, &texture);
+    glActiveTexture(GL_TEXTURE0);
+    glBindTexture(GL_TEXTURE_2D, texture);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+    glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+    glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, 0, GL_RGBA, GL_UNSIGNED_BYTE, nullptr);
 
-      program.use();
-      glUniform1i(glGetUniformLocation(program.getId(), "uTexture"), 0);
+    program.use();
+    glUniform1i(glGetUniformLocation(program.getId(), "uTexture"), 0);
 
-      // init Viewer
-      viewer = std::make_shared<Monde::View::ViewerManager>();
-      bool initSuccess = viewer->create(window, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, (int) texture);
+    // init Viewer
+    viewer = std::make_shared<Monde::View::ViewerManager>();
+    bool initSuccess = viewer->create(window, INIT_SCR_WIDTH, INIT_SCR_HEIGHT, (int) texture);
 
-      if (!initSuccess) {
-        LOGE("Failed to create Viewer");
-      } else {
-        // real frame buffer size
-        int frameWidth, frameHeight;
+    if (!initSuccess) {
+    LOGE("Failed to create Viewer");
+    } else {
+    // real frame buffer size
+    int frameWidth, frameHeight;
         
 
-        /* Loop until the user closes the window */
-        while (!glfwWindowShouldClose(window)) {
-          // check exit app
-          processInput(window);
+    /* Loop until the user closes the window */
+    while (!glfwWindowShouldClose(window)) {
+        // check exit app
+        processInput(window);
 
-          glfwGetFramebufferSize(window, &frameWidth, &frameHeight);
+        glfwGetFramebufferSize(window, &frameWidth, &frameHeight);
 
-          // draw frame
-          int outTex = viewer->drawFrame(frameWidth, frameHeight);
+        // draw frame
+        int outTex = viewer->drawFrame(frameWidth, frameHeight);
 
-          glDisable(GL_BLEND);
-          glDisable(GL_DEPTH_TEST);
-          glDepthMask(true);
-          glDisable(GL_CULL_FACE);
-          glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
+        glDisable(GL_BLEND);
+        glDisable(GL_DEPTH_TEST);
+        glDepthMask(true);
+        glDisable(GL_CULL_FACE);
+        glPolygonMode(GL_FRONT_AND_BACK, GL_FILL);
 
-          glBindFramebuffer(GL_FRAMEBUFFER, 0);
-          glViewport(0, 0, frameWidth, frameHeight);
+        glBindFramebuffer(GL_FRAMEBUFFER, 0);
+        glViewport(0, 0, frameWidth, frameHeight);
 
-          glClearColor(0.f, 0.f, 0.f, 0.0f);
-          glClear(GL_COLOR_BUFFER_BIT);
+        glClearColor(0.f, 0.f, 0.f, 0.0f);
+        glClear(GL_COLOR_BUFFER_BIT);
 
-          glActiveTexture(GL_TEXTURE0);
-          glBindTexture(GL_TEXTURE_2D, outTex);
+        glActiveTexture(GL_TEXTURE0);
+        glBindTexture(GL_TEXTURE_2D, outTex);
 
-          program.use();
-          glBindVertexArray(VAO);
-          glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
+        program.use();
+        glBindVertexArray(VAO);
+        glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
 
-          viewer->drawPanel();
-          glfwSwapBuffers(window);
-          glfwPollEvents();
-        }
-      }
+        viewer->drawPanel();
+        glfwSwapBuffers(window);
+        glfwPollEvents();
+    }
+    }
 
-      viewer->destroy();
-      viewer = nullptr;
+    viewer->destroy();
+    viewer = nullptr;
 
-      program.destroy();
+    program.destroy();
 
-      glDeleteVertexArrays(1, &VAO);
-      glDeleteBuffers(1, &VBO);
-      glDeleteBuffers(1, &EBO);
-      glDeleteTextures(1, &texture);
+    glDeleteVertexArrays(1, &VAO);
+    glDeleteBuffers(1, &VBO);
+    glDeleteBuffers(1, &EBO);
+    glDeleteTextures(1, &texture);
 
-      glfwDestroyWindow(window);
-      glfwTerminate();
+    glfwDestroyWindow(window);
+    glfwTerminate();
 
-      return 0;
+    return 0;
 }
 
 // process all input: query GLFW whether relevant keys are pressed/released this frame and react accordingly

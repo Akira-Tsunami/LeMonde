@@ -19,42 +19,42 @@ namespace View {
 #define CREATE_UNIFORM_BLOCK(name) renderer_->createUniformBlock(#name, sizeof(name))
 
 bool Viewer::create(int width, int height, int outTexId) {
-  cleanup();
+    cleanup();
 
-  width_ = width;
-  height_ = height;
-  outTexId_ = outTexId;
+    width_ = width;
+    height_ = height;
+    outTexId_ = outTexId;
 
-  // main camera
-  camera_ = &cameraMain_;
+    // main camera
+    camera_ = &cameraMain_;
 
-  // depth camera
-  if (!cameraDepth_) {
+    // depth camera
+    if (!cameraDepth_) {
     cameraDepth_ = std::make_shared<Camera>();
     cameraDepth_->setPerspective(glm::radians(CAMERA_FOV),
-                                 (float) SHADOW_MAP_WIDTH / (float) SHADOW_MAP_HEIGHT,
-                                 CAMERA_NEAR, CAMERA_FAR);
+                                    (float) SHADOW_MAP_WIDTH / (float) SHADOW_MAP_HEIGHT,
+                                    CAMERA_NEAR, CAMERA_FAR);
 
-  }
+    }
 
-  // create renderer
-  if (!renderer_) {
-    renderer_ = createRenderer();
-  }
-  if (!renderer_) {
+    // create renderer
+    if (!renderer_) {
+        renderer_ = createRenderer();
+    }
+    if (!renderer_) {
     LOGE("Viewer::create failed: createRenderer error");
     return false;
-  }
+    }
 
-  // create default resources
-  uniformBlockScene_ = CREATE_UNIFORM_BLOCK(UniformsScene);
-  uniformBlockModel_ = CREATE_UNIFORM_BLOCK(UniformsModel);
-  uniformBlockMaterial_ = CREATE_UNIFORM_BLOCK(UniformsMaterial);
+    // create default resources
+    uniformBlockScene_ = CREATE_UNIFORM_BLOCK(UniformsScene);
+    uniformBlockModel_ = CREATE_UNIFORM_BLOCK(UniformsModel);
+    uniformBlockMaterial_ = CREATE_UNIFORM_BLOCK(UniformsMaterial);
 
-  shadowPlaceholder_ = createTexture2DDefault(1, 1, TextureFormat_FLOAT32, TextureUsage_Sampler);
-  iblPlaceholder_ = createTextureCubeDefault(1, 1, TextureUsage_Sampler);
+    shadowPlaceholder_ = createTexture2DDefault(1, 1, TextureFormat_FLOAT32, TextureUsage_Sampler);
+    iblPlaceholder_ = createTextureCubeDefault(1, 1, TextureUsage_Sampler);
 
-  return true;
+    return true;
 }
 
 void Viewer::destroy() {
@@ -67,24 +67,24 @@ void Viewer::destroy() {
 }
 
 void Viewer::cleanup() {
-  if (renderer_) {
-    renderer_->waitIdle();
-  }
-  fboMain_ = nullptr;
-  texColorMain_ = nullptr;
-  texDepthMain_ = nullptr;
-  fboShadow_ = nullptr;
-  texDepthShadow_ = nullptr;
-  shadowPlaceholder_ = nullptr;
-  fxaaFilter_ = nullptr;
-  texColorFxaa_ = nullptr;
-  iblPlaceholder_ = nullptr;
-  iblGenerator_ = nullptr;
-  uniformBlockScene_ = nullptr;
-  uniformBlockModel_ = nullptr;
-  uniformBlockMaterial_ = nullptr;
-  programCache_.clear();
-  pipelineCache_.clear();
+    if (renderer_) {
+        renderer_->waitIdle();
+    }
+    fboMain_ = nullptr;
+    texColorMain_ = nullptr;
+    texDepthMain_ = nullptr;
+    fboShadow_ = nullptr;
+    texDepthShadow_ = nullptr;
+    shadowPlaceholder_ = nullptr;
+    fxaaFilter_ = nullptr;
+    texColorFxaa_ = nullptr;
+    iblPlaceholder_ = nullptr;
+    iblGenerator_ = nullptr;
+    uniformBlockScene_ = nullptr;
+    uniformBlockModel_ = nullptr;
+    uniformBlockMaterial_ = nullptr;
+    programCache_.clear();
+    pipelineCache_.clear();
 }
 
 void Viewer::resetReverseZ() {
@@ -98,46 +98,46 @@ void Viewer::waitRenderIdle() {
 }
 
 void Viewer::drawFrame(DemoScene &scene) {
-  if (!renderer_) {
-    return;
-  }
+    if (!renderer_) {
+        return;
+    }
 
-  scene_ = &scene;
+    scene_ = &scene;
 
-  // setup framebuffer
-  setupMainBuffers();
-  setupShadowMapBuffers();
+    // setup framebuffer
+    setupMainBuffers();
+    setupShadowMapBuffers();
 
-  // init skybox textures & ibl
-  initSkyboxIBL();
+    // init skybox textures & ibl
+    initSkyboxIBL();
 
-  // setup model materials
-  setupScene();
+    // setup model materials
+    setupScene();
 
-  // draw shadow map
-  drawShadowMap();
+    // draw shadow map
+    drawShadowMap();
 
-  // setup fxaa
-  processFXAASetup();
+    // setup fxaa
+    processFXAASetup();
 
-  // main pass
-  ClearStates clearStates{};
-  clearStates.colorFlag = true;
-  clearStates.depthFlag = config_.depthTest;
-  clearStates.clearColor = config_.clearColor;
-  clearStates.clearDepth = config_.reverseZ ? 0.f : 1.f;
+    // main pass
+    ClearStates clearStates{};
+    clearStates.colorFlag = true;
+    clearStates.depthFlag = config_.depthTest;
+    clearStates.clearColor = config_.clearColor;
+    clearStates.clearDepth = config_.reverseZ ? 0.f : 1.f;
 
-  renderer_->beginRenderPass(fboMain_, clearStates);
-  renderer_->setViewPort(0, 0, width_, height_);
+    renderer_->beginRenderPass(fboMain_, clearStates);
+    renderer_->setViewPort(0, 0, width_, height_);
 
-  // draw scene
-  drawScene(false);
+    // draw scene
+    drawScene(false);
 
-  // end main pass
-  renderer_->endRenderPass();
+    // end main pass
+    renderer_->endRenderPass();
 
-  // draw fxaa
-  processFXAADraw();
+    // draw fxaa
+    processFXAADraw();
 }
 
 void Viewer::drawShadowMap() {

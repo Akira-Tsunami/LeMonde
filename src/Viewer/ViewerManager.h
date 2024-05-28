@@ -59,50 +59,50 @@ public:
 
         // init config
         return configPanel_->init(window, width, height);
-        }
+    }
 
-        void setupConfigPanelActions() {
-        configPanel_->setResetCameraFunc([&]() -> void {
-            orbitController_->reset();
-        });
-        configPanel_->setResetMipmapsFunc([&]() -> void {
-            waitRenderIdle();
-            modelLoader_->getScene().model->resetStates();
-        });
-        configPanel_->setResetReverseZFunc([&]() -> void {
-            waitRenderIdle();
-            auto &viewer = viewers_[config_->rendererType];
-            viewer->resetReverseZ();
-        });
-        configPanel_->setReloadModelFunc([&](const std::string &path) -> bool {
-            waitRenderIdle();
-            return modelLoader_->loadModel(path);
-        });
-        configPanel_->setReloadSkyboxFunc([&](const std::string &path) -> bool {
-            waitRenderIdle();
-            return modelLoader_->loadSkybox(path);
-        });
-        configPanel_->setFrameDumpFunc([&]() -> void {
-            dumpFrame_ = true;
-        });
-        configPanel_->setUpdateLightFunc([&](glm::vec3 &position, glm::vec3 &color) -> void {
-            auto &scene = modelLoader_->getScene();
-            scene.pointLight.vertexes[0].a_position = position;
-            scene.pointLight.UpdateVertexes();
-            scene.pointLight.material->baseColor = glm::vec4(color, 1.f);
-        });
-        }
+    void setupConfigPanelActions() {
+    configPanel_->setResetCameraFunc([&]() -> void {
+        orbitController_->reset();
+    });
+    configPanel_->setResetMipmapsFunc([&]() -> void {
+        waitRenderIdle();
+        modelLoader_->getScene().model->resetStates();
+    });
+    configPanel_->setResetReverseZFunc([&]() -> void {
+        waitRenderIdle();
+        auto &viewer = viewers_[config_->rendererType];
+        viewer->resetReverseZ();
+    });
+    configPanel_->setReloadModelFunc([&](const std::string &path) -> bool {
+        waitRenderIdle();
+        return modelLoader_->loadModel(path);
+    });
+    configPanel_->setReloadSkyboxFunc([&](const std::string &path) -> bool {
+        waitRenderIdle();
+        return modelLoader_->loadSkybox(path);
+    });
+    configPanel_->setFrameDumpFunc([&]() -> void {
+        dumpFrame_ = true;
+    });
+    configPanel_->setUpdateLightFunc([&](glm::vec3 &position, glm::vec3 &color) -> void {
+        auto &scene = modelLoader_->getScene();
+        scene.pointLight.vertexes[0].a_position = position;
+        scene.pointLight.UpdateVertexes();
+        scene.pointLight.material->baseColor = glm::vec4(color, 1.f);
+    });
+    }
 
-        int drawFrame(int width, int height) {
-            orbitController_->update();
+    int drawFrame(int width, int height) {
+        orbitController_->update();
             
-            camera_->setPerspective(glm::radians(CAMERA_FOV), (float)width / (float)height, CAMERA_NEAR, CAMERA_FAR);
-            camera_->update();
+        camera_->setPerspective(glm::radians(CAMERA_FOV), (float)width / (float)height, CAMERA_NEAR, CAMERA_FAR);
+        camera_->update();
             
-            configPanel_->update();
+        configPanel_->update();
 
-            // update triangle count
-            config_->triangleCount_ = modelLoader_->getModelPrimitiveCnt();
+        // update triangle count
+        config_->triangleCount_ = modelLoader_->getModelPrimitiveCnt();
 
         auto &viewer = viewers_[config_->rendererType];
         if (rendererType_ != config_->rendererType) {
